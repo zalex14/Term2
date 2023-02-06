@@ -14,9 +14,8 @@ public class MonthlyTask extends Task {
         super(title, description, dateTime, type);
     }
 
-    // метод для получения следующей даты и времени выполнения
     @Override
-    public boolean appearsIn(LocalDateTime dateTime) {
-        return (dateTime.toLocalDate()).equals(LocalDate.now().plusMonths(1));
+    public boolean appearsIn(LocalDate localDate) {
+        return !localDate.isBefore(getDateTime().toLocalDate()) && localDate.getDayOfMonth() == (getDateTime().toLocalDate().getDayOfMonth());
     }
 }

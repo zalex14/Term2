@@ -14,9 +14,9 @@ public class YearlyTask extends Task {
         super(title, description, dateTime, type);
     }
 
-    // метод для получения следующей даты и времени выполнения
     @Override
-    public boolean appearsIn(LocalDateTime dateTime) {
-        return (dateTime.toLocalDate()).equals(LocalDate.now().plusYears(1));
+    public boolean appearsIn(LocalDate localDate) {
+        // учитываем високосный год, 29 февраля исполняется только в високосном году
+        return !localDate.isBefore(getDateTime().toLocalDate()) && ((localDate.isLeapYear() && (localDate.getDayOfMonth() == getDateTime().toLocalDate().getDayOfMonth() && localDate.getMonthValue() == getDateTime().toLocalDate().getMonthValue())) || !localDate.isLeapYear() && (localDate.getDayOfYear() == getDateTime().toLocalDate().getDayOfYear()));
     }
 }

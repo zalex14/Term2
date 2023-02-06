@@ -3,6 +3,7 @@ package diary.task;
 import diary.Type;
 import diary.exception.IncorrectArgumentException;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
@@ -14,7 +15,7 @@ public class OneTimeTask extends Task {
     }
 
     @Override
-    public boolean appearsIn(LocalDateTime dateTime) {
-        return false;
+    public boolean appearsIn(LocalDate localDate) {
+        return localDate.isEqual(getDateTime().toLocalDate());
     }
 }

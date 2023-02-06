@@ -3,8 +3,9 @@ package diary.task;
 import diary.Type;
 import diary.exception.IncorrectArgumentException;
 
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 /**
@@ -39,7 +40,9 @@ public abstract class Task {
     public void setTitle(String title) throws IncorrectArgumentException {
         if (title == null || title.isBlank()) {
             throw new IncorrectArgumentException("Заголовок задачи обязателен к заполнению");
-        } else this.title = title;
+        } else {
+            this.title = title;
+        }
     }
 
     public String getDescription() {
@@ -50,7 +53,9 @@ public abstract class Task {
     public void setDescription(String description) throws IncorrectArgumentException {
         if (description == null || description.isBlank()) {
             throw new IncorrectArgumentException("Описание задачи обязательно к заполнению");
-        } else this.description = description;
+        } else {
+            this.description = description;
+        }
     }
 
     public LocalDateTime getDateTime() {
@@ -65,7 +70,9 @@ public abstract class Task {
     public void setType(Type type) throws IncorrectArgumentException {
         if (type == null) {
             throw new IncorrectArgumentException("Тип задачи обязателен к заполнению");
-        } else this.type = type;
+        } else {
+            this.type = type;
+        }
     }
 
     @Override
@@ -83,14 +90,14 @@ public abstract class Task {
 
     @Override
     public String toString() {
-//        SimpleDateFormat formatter = new SimpleDateFormat("EEE, dd MMMM yyyy HH:mm");
         return "  Задача " + id +
                 " Заголовок: " + title +
                 " Описание: " + description +
                 " " + type +
-                " Дата и время выполнения: " + dateTime; // simpleDateFormat.format( dateTime)
+                " Дата и время выполнения: " + dateTime + "\n";
+        //  LocalDate.parse(searchDateTime, DateTimeFormatter.ofPattern("dd.MM.yyyy hh.mm"))
     }
 
     // метод для получения следующей даты и времени выполнения
-    public abstract boolean appearsIn(LocalDateTime dateTime);
+    public abstract boolean appearsIn(LocalDate localDate);
 }
