@@ -5,6 +5,6 @@ package diary.exception;
  */
 public class TaskNotFoundException extends Exception {
     public TaskNotFoundException() {
-        super(" Задача не найдена и не удалена! ");
+        super(" Задача не найдена ! ");
     }
 }

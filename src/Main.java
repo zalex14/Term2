@@ -6,7 +6,6 @@ import diary.service.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Collections;
 import java.util.Scanner;
 
 import word.WordStat;
@@ -97,7 +96,7 @@ public class Main {
         try {
             TaskService.remove(12);
         } catch (TaskNotFoundException e) {
-            throw new RuntimeException(e);
+            System.out.println(" Задача не удалена ");
         }
 
         System.out.println("\n Список после удаления \n" + TaskService.getAllByDate(LocalDate.of(2023, 2, 6)));
@@ -110,7 +109,7 @@ public class Main {
         try {
             TaskService.updateTitle(11, "Задание на неделю новое");
         } catch (TaskNotFoundException | IncorrectArgumentException e) {
-            throw new RuntimeException(e);
+            System.out.println(" Заголовок задачи не изменен ");
         }
 
         // Редактируем описание задачи
@@ -118,7 +117,7 @@ public class Main {
         try {
             TaskService.updateDescription(11, " Обсудить с заказчиком работы на неделю");
         } catch (TaskNotFoundException | IncorrectArgumentException e) {
-            throw new RuntimeException(e);
+            System.out.println(" Описание задачи не изменено ");
         }
 
         System.out.println(TaskService.getAllByDate(LocalDate.now().plusDays(1)));
