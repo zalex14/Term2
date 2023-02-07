@@ -16,7 +16,7 @@ public class YearlyTask extends Task {
 
     @Override
     public boolean appearsIn(LocalDate localDate) {
-        // учитываем високосный год, 29 февраля исполняется только в високосном году
-        return !localDate.isBefore(getDateTime().toLocalDate()) && ((localDate.isLeapYear() && (localDate.getDayOfMonth() == getDateTime().toLocalDate().getDayOfMonth() && localDate.getMonthValue() == getDateTime().toLocalDate().getMonthValue())) || !localDate.isLeapYear() && (localDate.getDayOfYear() == getDateTime().toLocalDate().getDayOfYear()));
+        return (localDate.isEqual(getDateTime().toLocalDate()) || localDate.isAfter(getDateTime().toLocalDate())) &&
+                (localDate.getDayOfYear() == getDateTime().toLocalDate().getDayOfYear());
     }
 }
